@@ -4,6 +4,8 @@ const continuaBtn = document.getElementById("resume");
 const cancelBtn = document.getElementById("cancel");
 const textArea = document.getElementById("input");
 const msg = document.getElementById("msg");
+const playImg = document.getElementById("playimg");
+const stopImg = document.getElementById("stopimg");
 
 //ATRIBUIÇÃO DE FUNÇÕES AO DISPLAY
 playBtn.addEventListener("click", iniciar);
@@ -18,13 +20,14 @@ const synthesizer = window.speechSynthesis;
 window.onload = function () {
   synthesizer.cancel();
 };
-
+stopImg.classList.add("visivel");
 function parar() {
   if (confirm("Deseja realmente parar a fala?")) {
     synthesizer.cancel();
   }
   return;
 }
+
 function iniciar() {
   //CONDIÇÃO PARA CASO A FALA ESTEJA EM ANDAMENTO
   if (synthesizer.speaking) {
@@ -36,9 +39,14 @@ function iniciar() {
     }, 1400);
   } else {
     // synthesizer.cancel();
+    iniciar = true;
     const textContent = textArea.value;
     let voice = new SpeechSynthesisUtterance(textContent);
     synthesizer.speak(voice);
+  }
+  if (synthesizer.speaking) {
+    stopImg.classList.remove("visivel");
+    playImg.classList.add("visivel");
   }
 }
 
@@ -54,4 +62,4 @@ function continuar() {
   synthesizer.resume();
 }
 
-console.log(synthesizer);
+console.log(synthesizer.speak);
