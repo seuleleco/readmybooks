@@ -24,6 +24,8 @@ stopImg.classList.add("visivel");
 function parar() {
   if (confirm("Deseja realmente parar a fala?")) {
     synthesizer.cancel();
+    playImg.classList.remove("visivel");
+    stopImg.classList.add("visivel");
   }
   return;
 }
@@ -38,15 +40,18 @@ function iniciar() {
       msg.classList.remove("visivel");
     }, 1400);
   } else {
-    // synthesizer.cancel();
-    iniciar = true;
     const textContent = textArea.value;
     let voice = new SpeechSynthesisUtterance(textContent);
     synthesizer.speak(voice);
-  }
-  if (synthesizer.speaking) {
-    stopImg.classList.remove("visivel");
-    playImg.classList.add("visivel");
+
+    if (synthesizer.speaking) {
+      stopImg.classList.remove("visivel");
+      playImg.classList.add("visivel");
+    }
+    voice.onend = function () {
+      playImg.classList.remove("visivel");
+      stopImg.classList.add("visivel");
+    };
   }
 }
 
@@ -61,5 +66,3 @@ function pausar() {
 function continuar() {
   synthesizer.resume();
 }
-
-console.log(synthesizer.speak);
