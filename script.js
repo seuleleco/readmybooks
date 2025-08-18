@@ -6,6 +6,7 @@ const textArea = document.getElementById("input");
 const msg = document.getElementById("msg");
 const playImg = document.getElementById("playimg");
 const stopImg = document.getElementById("stopimg");
+const pauseImg = document.getElementById("pauseimg");
 
 //ATRIBUIÇÃO DE FUNÇÕES AO DISPLAY
 playBtn.addEventListener("click", iniciar);
@@ -49,6 +50,7 @@ function iniciar() {
       playImg.classList.add("visivel");
     }
     voice.onend = function () {
+      pauseImg.classList.remove("visivel");
       playImg.classList.remove("visivel");
       stopImg.classList.add("visivel");
     };
@@ -57,12 +59,15 @@ function iniciar() {
 
 function pausar() {
   const pausado = synthesizer.paused;
-  if (synthesizer.speak) {
-    pausado === false;
-  }
   synthesizer.pause();
+  if (pausado === false) {
+    playImg.classList.remove("visivel");
+    pauseImg.classList.add("visivel");
+  }
 }
 
 function continuar() {
   synthesizer.resume();
+  playImg.classList.add("visivel");
+  pauseImg.classList.remove("visivel");
 }
