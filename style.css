@@ -12,6 +12,25 @@ body {
   opacity: 1;
 }
 
+#input {
+  width: 23vw;
+  height: 13vh;
+  top: 30vh;
+  position: relative;
+  resize: none;
+  border-radius: 12px;
+  outline: none;
+}
+.displays {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  top: 35vh;
+  position: relative;
+  width: 30vw;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -59,4 +78,11 @@ body {
 
 .statusimg {
   filter: invert(100%);
+  top: 55vh;
+  position: relative;
+}
+
+.btn {
+  width: 90px;
+  height: 30px;
 }

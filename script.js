@@ -58,16 +58,25 @@ function iniciar() {
 }
 
 function pausar() {
-  const pausado = synthesizer.paused;
-  synthesizer.pause();
-  if (pausado === false) {
-    playImg.classList.remove("visivel");
-    pauseImg.classList.add("visivel");
+  if (synthesizer.speaking === false) {
+    return;
+  } else {
+    const pausado = synthesizer.paused;
+    synthesizer.pause();
+
+    if (pausado === false) {
+      playImg.classList.remove("visivel");
+      pauseImg.classList.add("visivel");
+    }
   }
 }
 
 function continuar() {
   synthesizer.resume();
-  playImg.classList.add("visivel");
-  pauseImg.classList.remove("visivel");
+  if (synthesizer.speaking === false) {
+    return;
+  } else {
+    playImg.classList.add("visivel");
+    pauseImg.classList.remove("visivel");
+  }
 }
