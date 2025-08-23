@@ -26,6 +26,7 @@ function parar() {
   if (confirm("Deseja realmente parar a fala?")) {
     synthesizer.cancel();
     playImg.classList.remove("visivel");
+    pauseImg.classList.remove("visivel");
     stopImg.classList.add("visivel");
   }
   return;
